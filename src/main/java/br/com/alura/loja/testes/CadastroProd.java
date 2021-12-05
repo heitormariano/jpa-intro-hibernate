@@ -9,18 +9,53 @@ import br.com.alura.loja.modelo.Produto;
 
 public class CadastroProd {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
-		Categoria gamer = new Categoria("Gamer");
-		Produto mouse = new Produto("Mouse", "Mouse com alta precisão", new BigDecimal("210"), gamer);
-
 		CategoriaDAO catDAO = CategoriaDAO.getInstance();
-		catDAO.cadastrar(gamer);
 
+		String strGamer = "Gamer";
+		Categoria gamer = catDAO.obterByNome("Gamer");
+
+		// verificação: categoria Gamer
+		if (gamer != null) {
+			System.out.println("Cagatoria " + strGamer + " já existe");
+		} else {
+			gamer = new Categoria("Gamer");
+			catDAO.cadastrar(gamer);
+		}
+
+		// verificação: produto Mouse
 		ProdutoDAO prodDAO = ProdutoDAO.getInstance();
-		prodDAO.cadastrar(mouse);
 
+		String strMouse = "Mouse";
+		Produto mouse = prodDAO.obterByNome(strMouse);
+
+		if (mouse != null) {
+			System.out.println("Produto " + strMouse + " já existe");
+		} else {
+			mouse = new Produto(strMouse, "Mouse com alta precisão", new BigDecimal("210"), gamer);
+			prodDAO.cadastrar(mouse);
+		}
+
+		// verificação: categoria Sala/Jantar
+		String strSalaJantar = "Sala/Jantar";
+		Categoria salaJantar = catDAO.obterByNome(strSalaJantar);
+
+		if (salaJantar != null) {
+			System.out.println("Categoria " + strSalaJantar + " já existe");
+		} else {
+			salaJantar = new Categoria(strSalaJantar);
+			catDAO.cadastrar(salaJantar);
+		}
+
+		// verificação: produto Fogao
+		String strFogao = "Fogao";
+		Produto fogao = prodDAO.obterByNome(strFogao);
+
+		if (fogao != null) {
+			System.out.println("Produto " + strFogao + " já existe");
+		} else {
+			fogao = new Produto("Fogao", "Fogão 4 bocas", new BigDecimal("700"), salaJantar);
+			prodDAO.cadastrar(fogao);
+		}
 	}
 }

@@ -6,7 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.com.alura.loja.modelo.Categoria;
-import br.com.alura.loja.modelo.Produto;
 import br.com.alura.loja.util.JpaUtil;
 
 public class CategoriaDAO {
@@ -81,8 +80,20 @@ public class CategoriaDAO {
 		return this.em.find(Categoria.class, id);
 	}
 
+	/*
+	 * @SuppressWarnings("unchecked") public List<Categoria> obterByNome(String
+	 * nome) { StringBuilder sql = new StringBuilder();
+	 * sql.append("SELECT cat FROM Categoria cat ");
+	 * sql.append("WHERE cat.nome = :nome");
+	 * 
+	 * Query query = this.em.createQuery(sql.toString(), Categoria.class);
+	 * query.setParameter("nome", nome);
+	 * 
+	 * return query.getResultList(); }
+	 */
+
 	@SuppressWarnings("unchecked")
-	public List<Categoria> obterByNome(String nome) {
+	public Categoria obterByNome(String nome) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT cat FROM Categoria cat ");
 		sql.append("WHERE cat.nome = :nome");
@@ -90,7 +101,8 @@ public class CategoriaDAO {
 		Query query = this.em.createQuery(sql.toString(), Categoria.class);
 		query.setParameter("nome", nome);
 
-		return query.getResultList();
+		// usando recursos do java 8
+		return (Categoria) query.getResultList().stream().findFirst().orElse(null);
 	}
 
 	@SuppressWarnings("unchecked")

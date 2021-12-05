@@ -82,8 +82,20 @@ public class ProdutoDAO {
 		return this.em.find(Produto.class, id);
 	}
 
+	/*
+	 * @SuppressWarnings("unchecked") public List<Produto> obterByNome(String nome)
+	 * { StringBuilder sql = new StringBuilder();
+	 * sql.append("SELECT prod FROM Produto prod ");
+	 * sql.append("WHERE prod.nome = :nome");
+	 * 
+	 * Query query = this.em.createQuery(sql.toString(), Produto.class);
+	 * query.setParameter("nome", nome);
+	 * 
+	 * return query.getResultList(); }
+	 */
+
 	@SuppressWarnings("unchecked")
-	public List<Produto> obterByNome(String nome) {
+	public Produto obterByNome(String nome) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT prod FROM Produto prod ");
 		sql.append("WHERE prod.nome = :nome");
@@ -91,7 +103,8 @@ public class ProdutoDAO {
 		Query query = this.em.createQuery(sql.toString(), Produto.class);
 		query.setParameter("nome", nome);
 
-		return query.getResultList();
+		// usando recursos do Java 8
+		return (Produto) query.getResultList().stream().findFirst().orElse(null);
 	}
 
 	@SuppressWarnings("unchecked")

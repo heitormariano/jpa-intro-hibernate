@@ -19,18 +19,17 @@ public class ListarProdutos {
 			System.out.println("categoria: " + prod.getCategoria().getNome());
 		}
 
-		// Listar por nome
-		List<Produto> produtosPorNome = prodDAO.obterByNome("teclado");
-		for (Produto prod : produtosPorNome) {
-			System.out.println("nome: " + prod.getNome());
-			System.out.println("descricao: " + prod.getDescricao());
-			System.out.println("preco: " + prod.getPreco());
-			System.out.println("categoria: " + prod.getCategoria().getNome());
-		}
-		
+		// Obter produto pelo nome
+		Produto produtosPorNome = prodDAO.obterByNome("teclado");
+		System.out.println("Informações produto - recuperado por nome");
+		System.out.println("nome: " + produtosPorNome.getNome());
+		System.out.println("descricao: " + produtosPorNome.getDescricao());
+		System.out.println("preco: " + produtosPorNome.getPreco());
+		System.out.println("categoria: " + produtosPorNome.getCategoria().getNome());
+
 		// Listar por categoria
 		List<Produto> produtosPorCategoria = prodDAO.obterByCategoria("Gamer");
-		System.out.println("categoria filtro: Gamer");
+		System.out.println("categoria usada na busca: Gamer");
 		for (Produto prod : produtosPorCategoria) {
 			System.out.println("nome: " + prod.getNome());
 			System.out.println("descricao: " + prod.getDescricao());

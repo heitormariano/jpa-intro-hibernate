@@ -17,10 +17,9 @@ public class ListarCategorias {
 			System.out.println("ID do banco: " + cat.getId());
 		}
 
-		List<Categoria> categoriasPorNome = catDAO.obterByNome("Gamer");
-		for (Categoria cat : categoriasPorNome) {
-			System.out.println("Nome: " + cat.getNome());
-			System.out.println("ID do banco: " + cat.getId());
-		}
+		Categoria categoriaPorNome = catDAO.obterByNome("Gamer");
+		System.out.println("Nome: " + categoriaPorNome.getNome());
+		System.out.println("ID do banco: " + categoriaPorNome.getId());
+
 	}
 }
