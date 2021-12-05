@@ -13,14 +13,14 @@ public class AtualizaProduto {
 		// atualizar descrição de produto (id 1)
 		ProdutoDAO prodDAO = ProdutoDAO.getInstance();
 		Produto prodEncontrado = prodDAO.obterById(1L);
-		prodEncontrado.setDescricao("Teclado com multiplas funções");
-		prodEncontrado.setPreco(new BigDecimal("450"));
+		prodEncontrado.setDescricao("Mouse preciso com funções multiplas");
+		prodEncontrado.setPreco(new BigDecimal("220"));
 		prodDAO.atualizar(prodEncontrado);
 
 		// atualizar descrição categoria (id 1)
 		CategoriaDAO catDAO = CategoriaDAO.getInstance();
-		Categoria catEncontrada = catDAO.obterById(1L);
-		catEncontrada.setNome("Musica");
+		Categoria catEncontrada = catDAO.obterById(2L);
+		catEncontrada.setNome("Cozinha");
 		catDAO.atualizar(catEncontrada);
 	}
 }
