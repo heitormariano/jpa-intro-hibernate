@@ -10,9 +10,11 @@ public class CadastroCliente {
 
 		Cliente maria = new Cliente("Maria", "123.456.789-88");
 		Cliente joao = new Cliente("João", "455.665.332-89");
+		Cliente felipe = new Cliente("Felipe", "582.963.456-99");
 
 		clienteDAO.cadastrar(maria);
 		clienteDAO.cadastrar(joao);
+		clienteDAO.cadastrar(felipe);
 	}
 
 }
